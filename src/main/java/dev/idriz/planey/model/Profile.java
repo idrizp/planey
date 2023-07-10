@@ -1,13 +1,21 @@
 package dev.idriz.planey.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import dev.idriz.planey.PlaneyApplication;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(
+        name = "profiles",
+        indexes = {
+                @Index(
+                        columnList = "email",
+                        name = "email_index"
+                )
+        }
+)
 public class Profile {
 
     @Id
@@ -20,6 +28,8 @@ public class Profile {
 
     private String passportNumber;
     private String nationality;
+
+    private String password;
 
     @OneToMany
     private List<Ticket> tickets;
@@ -78,5 +88,23 @@ public class Profile {
 
     public void setProfileId(UUID profileId) {
         this.profileId = profileId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets the password of the user.
+     *
+     * @param password The password of the user.
+     * @apiNote This method should not be used directly. Use {@link #updatePassword(String)} instead if you are passing a plain text password.
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void updatePassword(String password) {
+        this.password = PlaneyApplication.PASSWORD_ENCODER.encode(password);
     }
 }
