@@ -19,6 +19,7 @@ import java.util.UUID;
 public class Profile {
 
     @Id
+    @GeneratedValue
     private UUID profileId;
 
     private String firstName;

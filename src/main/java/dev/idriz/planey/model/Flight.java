@@ -27,7 +27,7 @@ import java.util.UUID;
 public class Flight {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private UUID flightId;
 
     @Column

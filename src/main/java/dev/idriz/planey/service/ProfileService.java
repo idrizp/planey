@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.UUID;
 
-import static dev.idriz.planey.string.StringValidator.requireLength;
-import static dev.idriz.planey.string.StringValidator.requireValidEmail;
+import static dev.idriz.planey.string.StringValidator.*;
 
 @Service
 public class ProfileService {
@@ -26,6 +25,7 @@ public class ProfileService {
      * @param firstName      The first name of the user.
      * @param lastName       The last name of the user.
      * @param email          The email of the user.
+     * @param password       The password of the user.
      * @param passportNumber The passport number of the user.
      * @param nationality    The nationality of the user.
      * @return The newly created profile.
@@ -35,6 +35,8 @@ public class ProfileService {
             String lastName,
 
             String email,
+            String password,
+
             String passportNumber,
 
             String nationality
@@ -48,15 +50,40 @@ public class ProfileService {
 
         // Validation checks.
         requireValidEmail(email, "Email is not valid");
-        requireLength(firstName, 2, "First name must be at least 2 characters long");
-        requireLength(lastName, 2, "Last name must be at least 2 characters long");
-        requireLength(email, 5, "Email must be at least 5 characters long");
-        requireLength(passportNumber, 5, "Passport number must be at least 5 " +
-                "characters long");
+
+        requireBoundedLength(firstName,
+                2, 32,
+                "First name must be at least 2 characters long",
+                "First name must be at most 32 characters long"
+        );
+        requireBoundedLength(lastName,
+                2, 32,
+                "Last name must be at least 2 characters long",
+                "Last name must be at most 32 characters long"
+        );
+
+        requireBoundedLength(password,
+                8, 64,
+                "Password must be at least 8 characters long",
+                "Password must be at most 64 characters long"
+        );
+
+        requireBoundedLength(email,
+                5, 256,
+                "Email must be at least 5 characters long",
+                "Email must be at most 256 characters long"
+        );
+
+        requireBoundedLength(passportNumber,
+                5, 64,
+                "Passport number must be at least 5 characters long",
+                "Passport number must be at most 64 characters long"
+        );
 
         profile.setFirstName(firstName);
         profile.setLastName(lastName);
         profile.setEmail(email);
+        profile.updatePassword(password);
         profile.setPassportNumber(passportNumber);
         profile.setNationality(nationality);
 
