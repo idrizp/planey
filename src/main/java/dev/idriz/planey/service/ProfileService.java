@@ -44,7 +44,7 @@ public class ProfileService {
         Profile profile = new Profile();
 
         if (profileRepository.findByEmail(email).isPresent()) {
-            throw new IllegalArgumentException("Email already exists");
+            throw new IllegalStateException("Email already exists");
         }
 
 
@@ -81,6 +81,7 @@ public class ProfileService {
         );
 
         profile.setFirstName(firstName);
+        profile.setRole(Profile.Role.USER);
         profile.setLastName(lastName);
         profile.setEmail(email);
         profile.updatePassword(password);

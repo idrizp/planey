@@ -83,6 +83,12 @@ class ProfileServiceTest {
     }
 
     @Test
-    void deleteProfile() {
+    void deleteProfile_givenValidProfile_returnsTrue() {
+        assertTrue(profileService.deleteProfile(profile.getProfileId()));
+    }
+
+    @Test
+    void deleteProfile_givenInvalidProfile_returnsFalse() {
+        assertFalse(profileService.deleteProfile(UUID.randomUUID()));
     }
 }

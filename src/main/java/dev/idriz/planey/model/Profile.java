@@ -31,6 +31,7 @@ public class Profile {
     private String nationality;
 
     private String password;
+    private Role role;
 
     @OneToMany
     private List<Ticket> tickets;
@@ -107,5 +108,18 @@ public class Profile {
 
     public void updatePassword(String password) {
         this.password = PlaneyApplication.PASSWORD_ENCODER.encode(password);
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public enum Role {
+        ADMIN,
+        USER
     }
 }
