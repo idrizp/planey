@@ -17,6 +17,9 @@ public class StringValidator {
      * @param errorMessage the error message to throw if the string's length is below the threshold.
      */
     public static void requireLength(String string, int length, String errorMessage) {
+        if (string == null) {
+            throw new IllegalArgumentException("String cannot be null");
+        }
         if (string.length() < length) {
             throw new IllegalArgumentException(errorMessage);
         }
@@ -32,6 +35,9 @@ public class StringValidator {
      */
     public static void requireBoundedLength(String string, int minLength, int maxLength,
                                             String minErrorMessage, String maxErrorMessage) {
+        if (string == null) {
+            throw new IllegalArgumentException("String cannot be null");
+        }
         if (string.length() < minLength) {
             throw new IllegalArgumentException(minErrorMessage);
         }
