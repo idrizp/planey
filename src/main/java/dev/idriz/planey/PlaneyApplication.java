@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class PlaneyApplication {
 
+    // Perhaps switch this to argon2 in the future.
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     public static void main(String[] args) {

@@ -103,6 +103,16 @@ public class ProfileService {
     }
 
     /**
+     * Returns a profile by its email.
+     *
+     * @param email The email.
+     * @return The profile if it exists, empty otherwise.
+     */
+    public Optional<Profile> getProfileByEmail(String email) {
+        return profileRepository.findByEmail(email);
+    }
+
+    /**
      * Returns whether a profile's password matches with the plain text password.
      *
      * @param profileId The profile id.

@@ -1,4 +1,4 @@
-package dev.idriz.planey.controller;
+package dev.idriz.planey.controller.auth;
 
 import dev.idriz.planey.model.Profile;
 import dev.idriz.planey.model.dto.AuthenticationTokenResponse;

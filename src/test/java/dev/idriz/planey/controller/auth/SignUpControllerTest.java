@@ -1,4 +1,4 @@
-package dev.idriz.planey.controller;
+package dev.idriz.planey.controller.auth;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
